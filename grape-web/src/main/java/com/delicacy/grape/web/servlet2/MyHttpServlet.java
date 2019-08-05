@@ -1,4 +1,4 @@
-package com.delicacy.grape.web.springboot;
+package com.delicacy.grape.web.servlet2;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -9,14 +9,14 @@ import java.io.IOException;
 import java.io.Writer;
 
 
-public class MyHttpServlet2 extends HttpServlet {
+public class MyHttpServlet extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         Writer writer = response.getWriter();
         ServletContext servletContext = getServletContext();
-        servletContext.log("MyHttpServlet2 doGet ...");
-        writer.write("<html><body>Hello,World From MyHttpServlet2</body></html>");
+        servletContext.log("MyHttpServlet doGet ...");
+        writer.write("<html><body>Hello,World From MyHttpServlet</body></html>");
     }
 
 

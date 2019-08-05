@@ -1,22 +1,19 @@
-package com.delicacy.grape.web.servletinitializer;
+package com.delicacy.grape.web.servlet2;
 
-import com.delicacy.grape.web.springboot.MyHttpServlet2;
-import com.delicacy.grape.web.springboot.MyOncePerRequestFilter2;
-import com.delicacy.grape.web.springboot.MyServletRequestListener2;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
-import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.servlet.DispatcherType;
 
 @Configuration
-@ServletComponentScan(basePackages = {"com.delicacy.grape.web.springboot"})
-public class MySpringBootServletInitializer2 extends SpringBootServletInitializer {
+@ServletComponentScan(basePackages = {"com.delicacy.grape.web.servlet2"})
+public class ConfigureSpringBootServletInitializer extends SpringBootServletInitializer {
 
 
     private static final String servlet = "myservlet2";
@@ -26,7 +23,7 @@ public class MySpringBootServletInitializer2 extends SpringBootServletInitialize
     @Bean
     public static ServletRegistrationBean servletRegistrationBean() {
         ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean();
-        servletRegistrationBean.setServlet(new MyHttpServlet2());
+        servletRegistrationBean.setServlet(new MyHttpServlet());
         servletRegistrationBean.setName(servlet);
         servletRegistrationBean.addUrlMappings(servlet_path);
         servletRegistrationBean.addInitParameter("myname", "myvalue");
@@ -36,7 +33,7 @@ public class MySpringBootServletInitializer2 extends SpringBootServletInitialize
     @Bean
     public static FilterRegistrationBean filterRegistrationBean() {
         FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
-        filterRegistrationBean.setFilter(new MyOncePerRequestFilter2());
+        filterRegistrationBean.setFilter(new MyOncePerRequestFilter());
         filterRegistrationBean.addServletNames(servlet);
         filterRegistrationBean.setDispatcherTypes(DispatcherType.REQUEST, DispatcherType.FORWARD, DispatcherType.INCLUDE);
         return filterRegistrationBean;
@@ -46,12 +43,12 @@ public class MySpringBootServletInitializer2 extends SpringBootServletInitialize
     @Bean
     public static ServletListenerRegistrationBean servletListenerRegistrationBean() {
         ServletListenerRegistrationBean servletListenerRegistrationBean = new ServletListenerRegistrationBean();
-        servletListenerRegistrationBean.setListener(new MyServletRequestListener2());
+        servletListenerRegistrationBean.setListener(new MyServletRequestListener());
         return servletListenerRegistrationBean;
     }
 
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-        builder.sources(MySpringBootServletInitializer2.class);
+        builder.sources(ConfigureSpringBootServletInitializer.class);
         return builder;
     }
 

@@ -1,4 +1,4 @@
-package com.delicacy.grape.web.springboot;
+package com.delicacy.grape.web.servlet2;
 
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 
-public class MyOncePerRequestFilter2 extends OncePerRequestFilter {
+public class MyOncePerRequestFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
