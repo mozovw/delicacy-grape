@@ -8,7 +8,7 @@ import java.lang.annotation.*;
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@Import({EchoImportBeanDefinitionRegistrar.class})
+@Import({EchoImportBeanDefinitionRegistrar.class,EchoImportSelector.class})
 public @interface EnableEcho {
     String[] packages() default "";
 }

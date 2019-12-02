@@ -11,5 +11,16 @@
     bean生命周期
 #### enable
     enable注解了解
+#### mongodb
+#### mybatis-plus
+#### shardingsphere
+#### elasticsearch
+#### autoconfigure
+#### rabbitmq
+#### kafka
+#### oauth
+
+
+
 
 

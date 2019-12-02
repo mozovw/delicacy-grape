@@ -13,8 +13,8 @@ import java.util.Arrays;
 public class HTMLRestController {
 
     //HTML
-//    @RequestMapping(path = {"/html/demo", "/html/demo2"}, method = {RequestMethod.GET,RequestMapping.POST})
-    @GetMapping(path = {"/html/demo"})
+//    @RequestMapping(path = {"/html/processor", "/html/demo2"}, method = {RequestMethod.GET,RequestMapping.POST})
+    @GetMapping(path = {"/html/processor"})
     @PostMapping(path = {"/html/demo2"})
     public String html() {
         return "<html><body>Hello,World</body></html>";

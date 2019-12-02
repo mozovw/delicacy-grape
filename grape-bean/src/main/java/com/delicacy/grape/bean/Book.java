@@ -46,7 +46,7 @@ public class Book implements BeanNameAware,BeanFactoryAware,
 
     public void setBookName(String bookName) {
         this.bookName = bookName;
-        System.out.println("setBookName: Book name has set.");
+        System.out.println("setBookName: Book username has set.");
     }
 
     public void myPostConstruct(){

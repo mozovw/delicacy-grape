@@ -38,6 +38,7 @@
 		<dependency>
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>
+			<version>RELEASE</version>
 		</dependency>
 
 		<dependency>

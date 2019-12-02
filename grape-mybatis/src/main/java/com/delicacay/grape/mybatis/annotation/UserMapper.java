@@ -18,7 +18,7 @@ public interface UserMapper {
             @Result(property = "description", column = "desc", typeHandler = DescriptionTypeHandler.class),
             @Result(property = "height", column = "height")
     })
-    @Select("SELECT id,name,age,`desc`,height FROM user WHERE id = #{id}")
+    @Select("SELECT id,username,age,`desc`,height FROM user WHERE id = #{id}")
     User selectUser(int id);
 
 }

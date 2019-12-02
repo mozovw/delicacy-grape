@@ -7,7 +7,7 @@
     <resultMap id="UserResultMap" type="com.delicacay.grape.mybatis.entity.User">
 
         <id property="id" column="id"/>
-        <result property="name" column="name" javaType="java.lang.String"/>
+        <result property="name" column="username" javaType="java.lang.String"/>
         <result property="age" column="age"/>
         <result property="description" column="desc"
                 typeHandler="com.segmentfault.springbootlesson7.handler.DescriptionTypeHandler"/>
@@ -16,6 +16,6 @@
     </resultMap>
 
     <select id="selectOneUser" parameterType="int" resultMap="UserResultMap" resultType="com.delicacay.grape.mybatis.entity.User">
-        SELECT id,name,age,`desc`,height FROM user WHERE id = #{id}
+        SELECT id,username,age,`desc`,height FROM document WHERE id = #{id}
     </select>
 </mapper>
