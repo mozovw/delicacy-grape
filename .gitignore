@@ -8,3 +8,4 @@ out/
 .factorypath
 .project
 *.iml
+/*/.mvn/
