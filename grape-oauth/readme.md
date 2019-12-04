@@ -2,7 +2,7 @@
 
 
 ```$xslt
-localhost:8080/oauth/token?client_id=client_id_1&client_secret=123456&grant_type=password&username=xiaomi&password=123456
+localhost:8080/oauth/token?client_id=client_id_1&client_secret=123456&grant_type=password&username=admin&password=123456
 {
     "access_token": "1e8ada36-ed82-49fc-9ca7-ff897d4bf2b2",
     "token_type": "bearer",

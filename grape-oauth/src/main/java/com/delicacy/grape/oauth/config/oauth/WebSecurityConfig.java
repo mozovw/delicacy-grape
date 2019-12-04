@@ -60,7 +60,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @SneakyThrows
     public UserDetailsService userDetailsService() {
         InMemoryUserDetailsManager userDetailsService = new InMemoryUserDetailsManager();
-        userDetailsService.createUser(User.withUsername("xiaomi")
+        userDetailsService.createUser(User.withUsername("admin")
                 .password(passwordEncoder().encode("123456"))
                 .authorities("ROLE_ADMIN").build());
         userDetailsService.createUser(User.withUsername("xiaoming")
