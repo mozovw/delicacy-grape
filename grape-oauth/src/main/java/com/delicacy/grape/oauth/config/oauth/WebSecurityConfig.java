@@ -47,10 +47,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.formLogin().permitAll();
         http.logout().permitAll().deleteCookies("JSESSIONID");
         http.csrf().disable();
-
         http.authorizeRequests()
                 .antMatchers( "/login").permitAll()
-                .antMatchers("/oauth/**").authenticated();
+                .anyRequest().authenticated();
     }
 
 

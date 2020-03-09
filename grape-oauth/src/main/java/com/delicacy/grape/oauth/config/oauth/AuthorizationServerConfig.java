@@ -14,6 +14,12 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
+
+import java.util.Arrays;
 
 @Configuration
 @EnableAuthorizationServer
@@ -32,7 +38,6 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        //配置两个客户端,一个用于password认证一个用于client认证
         clients.inMemory()
                 .withClient(CLIENT_ID)
                 .secret(CLIENT_SECRET)
@@ -56,6 +61,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .authenticationManager(authenticationManager)
                 //接收GET和POST
                 .allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST);
+
     }
 
     /**
@@ -70,8 +76,25 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Override
     public void configure(AuthorizationServerSecurityConfigurer oauthServer) {
         oauthServer
-                .tokenKeyAccess("permitAll()") //url:/oauth/token_key,exposes public key for token verification if using JWT tokens
-                .checkTokenAccess("isAuthenticated()") //url:/oauth/check_token allow check token
+                // 开启/oauth/token_key验证端口无权限访问
+                .tokenKeyAccess("permitAll()")
+                // 开启/oauth/check_token验证端口认证权限访问
+                .checkTokenAccess("isAuthenticated()")
                 .allowFormAuthenticationForClients();
+        oauthServer.addTokenEndpointAuthenticationFilter(new CorsFilter(corsConfigurationSource()));
+
+    }
+
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(Arrays.asList("*"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "HEAD", "DELETE", "OPTION"));
+        configuration.setAllowedHeaders(Arrays.asList("*"));
+        configuration.addExposedHeader("Authorization");
+        configuration.addExposedHeader("Content-disposition");//文件下载消息头
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
     }
 }

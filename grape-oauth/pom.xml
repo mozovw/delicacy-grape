@@ -11,7 +11,7 @@
 	<groupId>com.delicacy</groupId>
 	<artifactId>grape-oauth</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>grape-oath2</name>
+	<name>grape-oauth</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
