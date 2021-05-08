@@ -17,7 +17,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     public User get(String name) {
         UserMapper baseMapper = this.getBaseMapper();
         User user = baseMapper.selectOne(Wrappers.<User>query().lambda()
-                .eq(User::getUsername,"乔峰"));
+            .eq(User::getUsername,"乔峰"));
         return user;
-    }
+}
 }

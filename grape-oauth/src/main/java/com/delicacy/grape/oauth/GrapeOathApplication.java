@@ -6,7 +6,7 @@ import org.springframework.cache.annotation.EnableCaching;
 
 
 @SpringBootApplication(scanBasePackages = {
-        "com.delicacy.grape.oauth.config.oauth",
+        "com.delicacy.grape.oauth.config.http",
         "com.delicacy.grape.oauth.rest"})
 @EnableCaching
 public class GrapeOathApplication {

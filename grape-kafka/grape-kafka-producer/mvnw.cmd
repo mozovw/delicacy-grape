@@ -137,7 +137,7 @@ if exist %WRAPPER_JAR% (
         SET DOWNLOAD_URL="%MVNW_REPOURL%/io/takari/maven-wrapper/0.5.5/maven-wrapper-0.5.5.jar"
     )
     if "%MVNW_VERBOSE%" == "true" (
-        echo Couldn't find %WRAPPER_JAR%, downloading it ...
+        echo Couldn'user find %WRAPPER_JAR%, downloading it ...
         echo Downloading from: %DOWNLOAD_URL%
     )
 

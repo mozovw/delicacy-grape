@@ -15,7 +15,7 @@
 
     </resultMap>
 
-    <select id="selectOneUser" parameterType="int" resultMap="UserResultMap" resultType="com.delicacay.grape.mybatis.entity.User">
+    <select id="selectOneUser" flushCache="true" parameterType="int" resultMap="UserResultMap" resultType="com.delicacay.grape.mybatis.entity.User">
         SELECT id,username,age,`desc`,height FROM document WHERE id = #{id}
     </select>
 </mapper>

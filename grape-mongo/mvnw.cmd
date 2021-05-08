@@ -130,7 +130,7 @@ FOR /F "tokens=1,2 delims==" %%A IN (%MAVEN_PROJECTBASEDIR%\.mvn\wrapper\maven-w
 if exist %WRAPPER_JAR% (
     echo Found %WRAPPER_JAR%
 ) else (
-    echo Couldn't find %WRAPPER_JAR%, downloading it ...
+    echo Couldn'user find %WRAPPER_JAR%, downloading it ...
 	echo Downloading from: %DOWNLOAD_URL%
     powershell -Command "(New-Object Net.WebClient).DownloadFile('%DOWNLOAD_URL%', '%WRAPPER_JAR%')"
     echo Finished downloading %WRAPPER_JAR%

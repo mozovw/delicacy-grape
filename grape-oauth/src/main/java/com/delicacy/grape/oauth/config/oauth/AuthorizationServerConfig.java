@@ -1,6 +1,8 @@
 package com.delicacy.grape.oauth.config.oauth;
 
+import com.delicacy.grape.oauth.config.error.CustomWebResponseExceptionTranslator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -25,13 +27,13 @@ import java.util.Arrays;
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
-    private static final String RESOURCE_ID = "oauth-resource";
     private static final String CLIENT_ID = "client_id_1";
     private static final String CLIENT_SECRET = new BCryptPasswordEncoder().encode("123456");
 
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    @Qualifier("userDetailsService")
     @Autowired
     private UserDetailsService detailsService;
 
@@ -41,9 +43,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         clients.inMemory()
                 .withClient(CLIENT_ID)
                 .secret(CLIENT_SECRET)
-                .resourceIds(RESOURCE_ID)
                 .authorizedGrantTypes("password", "authorization_code", "implicit", "client_credentials", "refresh_token")
-                .scopes("read","write")
+                .scopes("read", "write")
                 .accessTokenValiditySeconds(3600) // token失效时间
                 .refreshTokenValiditySeconds(864000) //refresh token失效时间
                 .redirectUris("http://example.com")
@@ -58,14 +59,17 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
         endpoints.userDetailsService(detailsService)
                 .tokenStore(memoryTokenStore())
+                .exceptionTranslator(new CustomWebResponseExceptionTranslator())
                 .authenticationManager(authenticationManager)
                 //接收GET和POST
                 .allowedTokenEndpointRequestMethods(HttpMethod.GET, HttpMethod.POST);
+
 
     }
 
     /**
      * token存储
+     *
      * @return
      */
     @Bean
@@ -80,8 +84,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .tokenKeyAccess("permitAll()")
                 // 开启/oauth/check_token验证端口认证权限访问
                 .checkTokenAccess("isAuthenticated()")
+//                .addTokenEndpointAuthenticationFilter()
                 .allowFormAuthenticationForClients();
-        oauthServer.addTokenEndpointAuthenticationFilter(new CorsFilter(corsConfigurationSource()));
 
     }
 
@@ -96,5 +100,10 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
+    }
+
+    @Bean
+    public CorsFilter corsFilter() {
+        return new CorsFilter(corsConfigurationSource());
     }
 }

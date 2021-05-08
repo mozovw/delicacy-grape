@@ -12,6 +12,7 @@ public class HelloReceiver {
 
     @RabbitHandler
     public void process(String hello) {
+//        int i = 1/0;
         log.info("Receiver  : " + hello);
     }
 
