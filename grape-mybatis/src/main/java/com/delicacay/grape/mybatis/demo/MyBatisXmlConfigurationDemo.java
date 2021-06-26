@@ -20,7 +20,7 @@ public class MyBatisXmlConfigurationDemo {
 
         ResourceLoader resourceLoader = new DefaultResourceLoader();
 
-        Resource resource = resourceLoader.getResource("classpath:/mybatis/mybatis-constant.xml");
+        Resource resource = resourceLoader.getResource("classpath:/mybatis/mybatis-config.xml");
 
         EncodedResource encodedResource = new EncodedResource(resource, "UTF-8");
 
@@ -32,7 +32,7 @@ public class MyBatisXmlConfigurationDemo {
 
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
-        User user = sqlSession.selectOne("com.segmentfault.springbootlesson7.mapper.UserMapper.selectOneUser", 145);
+        User user = sqlSession.selectOne("com.delicacay.grape.mybatis.annotation.UserMapper.selectOneUser", 145);
 
         System.out.println(user);
 

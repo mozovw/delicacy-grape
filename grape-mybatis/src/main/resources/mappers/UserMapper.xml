@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.segmentfault.springbootlesson7.mapper.UserMapper">
+<mapper namespace="com.delicacay.grape.mybatis.annotation.UserMapper">
 
     <resultMap id="UserResultMap" type="com.delicacay.grape.mybatis.entity.User">
 
@@ -10,12 +10,12 @@
         <result property="name" column="username" javaType="java.lang.String"/>
         <result property="age" column="age"/>
         <result property="description" column="desc"
-                typeHandler="com.segmentfault.springbootlesson7.handler.DescriptionTypeHandler"/>
+                typeHandler="com.delicacay.grape.mybatis.handler.DescriptionTypeHandler"/>
         <result property="height" column="height"/>
 
     </resultMap>
 
     <select id="selectOneUser" flushCache="true" parameterType="int" resultMap="UserResultMap" resultType="com.delicacay.grape.mybatis.entity.User">
-        SELECT id,username,age,`desc`,height FROM document WHERE id = #{id}
+        SELECT id,name,age,`desc`,height FROM user WHERE id = #{id}
     </select>
 </mapper>

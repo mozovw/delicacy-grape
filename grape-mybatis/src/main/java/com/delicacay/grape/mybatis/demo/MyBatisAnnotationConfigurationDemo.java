@@ -18,7 +18,7 @@ public class MyBatisAnnotationConfigurationDemo {
 
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 
-        InputStream inputStream = classLoader.getResourceAsStream("mybatis/mybatis-constant.xml");
+        InputStream inputStream = classLoader.getResourceAsStream("mybatis/mybatis-config.xml");
 
         Reader reader = new InputStreamReader(inputStream, "UTF-8");
 

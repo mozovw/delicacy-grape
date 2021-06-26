@@ -36,9 +36,8 @@
     </databaseIdProvider>
 
     <mappers>
-        <mapper resource="mybatis/mappers/UserMapper-1.xml"/>
-        <mapper resource="mybatis/mappers/UserMapper.xml"/>
-        <mapper class="com.segmentfault.springbootlesson7.annotation.UserMapper" />
+<!--        <mapper resource="mappers/UserMapper.xml"/>-->
+        <mapper class="com.delicacay.grape.mybatis.annotation.UserMapper" />
     </mappers>
 
 </configuration>
